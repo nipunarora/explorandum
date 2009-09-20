@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+	<comment>A sample configuration file.</comment>
+	
+	<entry key="explorers.classes">explorandum.g1.G1DijkstraTest explorandum.g2.Team2 explorandum.g3.Test3Player explorandum.g4.G4Player explorandum.g5.G5Player explorandum.g6.G6Player</entry>
+
+	<entry key="explorers.range">3</entry>
+
+	<entry key="explorers.rounds">1000</entry>
+	
+  	<entry key ="explorers.seed">102223023</entry>
+	
+	<entry key = "explorers.numgames">1</entry>
+	
+	<entry key = "explorers.singlestart">false</entry>
+	
+	<entry key = "explorers.board.dir">boards</entry>
+	
+	<entry key = "explorers.Logger.PlayerLogLevel">FATAL</entry>
+	
+	<entry key = "explorers.Logger.SimulatorLogLevel">FATAL</entry>
+</properties>
