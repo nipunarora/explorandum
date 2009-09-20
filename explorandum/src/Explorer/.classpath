@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Explorer/src"/>
+	<classpathentry kind="lib" path="Explorer/lib/serializer.jar"/>
+	<classpathentry kind="lib" path="Explorer/lib/teneighty-heap_R17.jar"/>
+	<classpathentry kind="lib" path="Explorer/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="Explorer/lib/xercesSamples.jar"/>
+	<classpathentry kind="lib" path="Explorer/lib/xml-apis.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Explorer/bin"/>
+</classpath>
