@@ -9,12 +9,25 @@ import java.awt.Point;
 
 /**
  *
- * @author danny
+ * 
  */
 public class Cell {
 
-    private Point point;
+    private int x;
+    private int y;
     private int status;
-    private int rank;
+    private double rank;
+    
+    public void setCell( int x, int y, int status )
+    {
+    	this.x=x;
+    	this.y=y;
+    	this.status=status;
+    }
+    
+    public void setRank(double rank)
+    {
+    	this.rank= rank;
+    }
     
 }
