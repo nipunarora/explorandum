@@ -17,7 +17,7 @@ public class Cell {
     private int y;
     private int terrain;
     private int stepStatus;//1 conquered, 2 conquered by someone else, 3 unknown
-    private double rank;
+    private double rank;// tbd
     private int distance;//distance from which this cell was last observed
     
     public void setCell( int x, int y, int terrain, int stepStatus , int distance)
@@ -34,6 +34,7 @@ public class Cell {
     	this.rank= rank;
     }
     
+    //checks if the cell has been visited before
     public boolean checkVisitedCell(){
     	if(this.stepStatus==3)
     		return false;
