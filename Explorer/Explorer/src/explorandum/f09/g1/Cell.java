@@ -15,19 +15,30 @@ public class Cell {
 
     private int x;
     private int y;
-    private int status;
+    private int terrain;
+    private int stepStatus;//1 conquered, 2 conquered by someone else, 3 unknown
     private double rank;
+    private int distance;//distance from which this cell was last observed
     
-    public void setCell( int x, int y, int status )
+    public void setCell( int x, int y, int terrain, int stepStatus , int distance)
     {
     	this.x=x;
     	this.y=y;
-    	this.status=status;
+    	this.terrain=terrain;
+    	this.stepStatus=stepStatus;
+    	this.distance= distance;
     }
     
     public void setRank(double rank)
     {
     	this.rank= rank;
+    }
+    
+    public boolean checkVisitedCell(){
+    	if(this.stepStatus==3)
+    		return false;
+    	else
+    		return true;
     }
     
 }
