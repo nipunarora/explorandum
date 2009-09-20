@@ -57,7 +57,7 @@ public class Map {
 		}
 		
 	}
-	
+	//checks if the point has been explored
 	public boolean hasExplored(Point p){
 		
 		if(this.mapExplored.containsKey(p))
@@ -65,7 +65,7 @@ public class Map {
 		else
 			return false;
 	}
-	
+	// checks if the point has been visited
 	public boolean hasVisited(Point p){
 		if(this.mapExplored.containsKey(p) && this.mapExplored.get(p).checkVisitedCell())
 			return true;
