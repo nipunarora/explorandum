@@ -4,8 +4,6 @@ import java.util.*;
 import java.awt.Point;
 import java.util.HashMap;
 
-
-
 public class Map {
 
 	private HashMap <Point, Cell> mapExplored;
@@ -23,7 +21,10 @@ public class Map {
 		//Create current cell and input values
 		Cell temp = new Cell();
 		
-		this.mapExplored.put(currentLocation, );
+		//temp.setCell(currentLocation.x, currentLocation.y, )
+		
+		
+		//this.mapExplored.put(currentLocation, );
 		
 	}
 
