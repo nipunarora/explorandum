@@ -15,7 +15,7 @@ public class G1Player implements Player{
 	
 	public Map map;
 	public int rounds;//I am assuming rounds to be given in some fashion but will figure out it later... using this as a temporary variable for calculation purposes...
-	
+	public int distance;//distance visible to be changed later
 	
 	@Override
 	public Color color() throws Exception {
@@ -54,17 +54,27 @@ public class G1Player implements Player{
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus)
 	{
-		
-		
-		return 0;
+		Nearest temp= new Nearest();
+		temp=nearestwateroffset(offsets, terrain,distance);
+		if(temp.isWater==true)
+		{
+			return temp.direction;
+		}
+		else 
+		{
+			Random rand = new Random();
+			int action = ACTIONS[rand.nextInt(ACTIONS.length)];
+			return action;
+		}
+			
 	}
 	
-	public Nearest nearestwateroffset(Point[] offsets, Integer[] terrain)
+	public Nearest nearestwateroffset(Point[] offsets, Integer[] terrain, int d)
 	{
 		Nearest temp= new Nearest();
 		temp.isWater=false;
 		temp.offsetValue=100;
-		
+		int x=0;
 		for(int i=0;i<offsets.length;i++)
 		{
 			if(terrain[i]==1)
@@ -72,6 +82,31 @@ public class G1Player implements Player{
 				temp.isWater=true;
 				if(temp.offsetValue>offsetdist(offsets[i]))
 					temp.offsetValue=i;
+				x=(int)Math.ceil(offsets[i].x/d);
+				if(x==1)
+					switch((int)Math.ceil(offsets[i].y/d))
+					{
+					case 0: temp.direction=3;
+					case 1: temp.direction=2;
+					case -1: temp.direction=4;
+					default: break;
+					}
+				else if(x==0)
+				switch((int)Math.ceil(offsets[i].y/d))
+				{
+				case 1: temp.direction=1;
+				case -1: temp.direction=5;
+				default: break;
+				}
+				else if(x==-1)
+				switch((int)Math.ceil(offsets[i].y/d))
+				{
+				case 0: temp.direction=7;
+				case 1: temp.direction=8;
+				case -1: temp.direction=6;
+				default: break;
+				}
+				
 			}
 			
 		}
