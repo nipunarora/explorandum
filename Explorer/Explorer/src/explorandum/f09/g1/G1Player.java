@@ -28,7 +28,7 @@ public class G1Player implements Player{
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus) throws Exception {
 		
-		//map.setMapExplored( currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
+		map.setMapExplored( currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
 		Random rand = new Random();
 		
@@ -80,40 +80,42 @@ public class G1Player implements Player{
 			if(terrain[i]==1)
 			{
 				temp.isWater=true;
+				//makes sure to select the nearest offset distance initially initialized offsetvalue to 100... offset value stores how much distance the current water cell is..
 				if(temp.offsetValue>offsetdist(offsets[i]))
+				{
 					temp.offsetValue=i;
-				x=(int)Math.ceil(offsets[i].x/d);
-				if(x==1)
-					switch((int)Math.ceil(offsets[i].y/d))
-					{
-					case 0: temp.direction=3;
-					case 1: temp.direction=2;
-					case -1: temp.direction=4;
-					default: break;
-					}
-				else if(x==0)
-				switch((int)Math.ceil(offsets[i].y/d))
-				{
-				case 1: temp.direction=1;
-				case -1: temp.direction=5;
-				default: break;
+					x=(int)Math.ceil(offsets[i].x/d);
+					if(x==1)
+						switch((int)Math.ceil(offsets[i].y/d))
+						{
+							case 0: temp.direction=3;
+							case 1: temp.direction=2;
+							case -1: temp.direction=4;
+							default: break;
+						}
+					else if(x==0)
+						switch((int)Math.ceil(offsets[i].y/d))
+						{
+						case 1: temp.direction=1;
+						case -1: temp.direction=5;
+						default: break;
+						}
+					else if(x==-1)
+						switch((int)Math.ceil(offsets[i].y/d))
+						{
+						case 0: temp.direction=7;
+						case 1: temp.direction=8;
+						case -1: temp.direction=6;
+						default: break;
+						}
 				}
-				else if(x==-1)
-				switch((int)Math.ceil(offsets[i].y/d))
-				{
-				case 0: temp.direction=7;
-				case 1: temp.direction=8;
-				case -1: temp.direction=6;
-				default: break;
-				}
-				
 			}
 			
 		}
 		return temp;
 	}
 	
-	//Calculates distance
+	//Calculates distance of the point p from 0,0 to be used for calculating distances of offsets..
 	public int offsetdist(Point p)
 	{		
 		double tempval= (p.x)^2 + (p.y)^2;
@@ -121,7 +123,7 @@ public class G1Player implements Player{
 		return (int)Math.floor(tempval);
 	}
 	
-	public double openness(Point currentLocation, Point[] offsets,
+	/*public double openness(Point currentLocation, Point[] offsets,
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus)
 	{
@@ -185,6 +187,6 @@ public class G1Player implements Player{
 		
 		
 		
-	}
+	}*/
 
 }
