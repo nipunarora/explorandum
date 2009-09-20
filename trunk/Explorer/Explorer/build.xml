@@ -1,0 +1,756 @@
+<?xml version="1.0"?>
+<!-- Ant build file for the Ants Project -->
+<!-- Programming and Problem Solving -->
+<!-- Copyright (c) 2007 The Trustees of Columbia University -->
+<project name="Colony" default="compile" basedir=".">
+
+<!-- set global properties for this build -->
+<property name="build" value="./build" />
+<property name="src" value="./src" />
+<property name="lib" value="./lib" />
+<property name="archive_file" value="explorer.tar.gz"/>
+	
+<!-- compiler -->
+<!-- <property name="build.compiler" value="jikes" /> -->
+
+<target name="init">
+	<!-- Create the time stamp -->
+	<tstamp/>
+	<mkdir dir="${build}" />
+</target>
+
+<target name="compile" depends="init">
+	<!-- Compile the java code from ${src} into ${build} -->
+	<javac srcdir="${src}" destdir="${build}">
+		<classpath>
+			<pathelement path = "${lib}/serializer.jar"/>
+			<pathelement path = "${lib}/xml-apis.jar"/>
+			<pathelement path = "${lib}/xercesImpl.jar"/>
+			<pathelement path = "${lib}/xercesSamples.jar"/>
+			<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+		</classpath>
+	</javac>
+</target>
+
+<target name="run" depends="compile">
+	<java classname="explorandum.GameEngine" fork="yes">
+		<jvmarg value="-Xmx2G"/>
+		<arg value="explorers.xml"/>
+		<arg value="gui"/>
+		<classpath>
+			<pathelement path="${build}" />
+			<pathelement path = "${lib}/serializer.jar"/>
+			<pathelement path = "${lib}/xml-apis.jar"/>
+			<pathelement path = "${lib}/xercesImpl.jar"/>
+			<pathelement path = "${lib}/xercesSamples.jar"/>
+			<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+		</classpath>
+	</java>
+</target>
+
+	<target name="tournament1" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers01.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.6p.team2.xml"/>
+			<arg value="20"/>
+			<arg value="500"/> 
+			<arg value="20"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament2" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers02.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.6p.team2.xml"/>
+			<arg value="1"/>
+			<arg value="3000"/> 
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament3a" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers03a.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="3"/>
+			<arg value="2000"/> 
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament3b" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers03b.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="3"/>
+			<arg value="2000"/> 
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament3c" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers03c.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="3"/>
+			<arg value="2000"/> 
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament4" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers04.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g1.12p.world_map.xml"/>
+			<arg value="10"/>
+			<arg value="3000"/> 
+			<arg value="40"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament5" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers05.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g1.12p.world_map.xml"/>
+			<arg value="4"/>
+			<arg value="3000"/> 
+			<arg value="40"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament6" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers06.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="1"/>
+			<arg value="2500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament7" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers07.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="8"/>
+			<arg value="100"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament8" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers08.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g4.7p.BeachIsland.xml"/>
+			<arg value="11"/>
+			<arg value="600"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament9" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers09.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g4.7p.BeachIsland.xml"/>
+			<arg value="4"/>
+			<arg value="1500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament10a" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10a.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament10b" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10b.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament10c" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10c.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament10d" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10d.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament10e" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10e.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament10f" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10f.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g6.12p.smallcontinent.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament11a" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10a.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament11b" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10b.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament11c" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10c.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament11d" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10d.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament11e" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10e.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament11f" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10f.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g2.4p.TempleOfDoom.xml"/>
+			<arg value="10"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament12a" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10a.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s2.circle.xml"/>
+			<arg value="3"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament12b" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10b.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s2.circle.xml"/>
+			<arg value="3"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament12c" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10c.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s2.circle.xml"/>
+			<arg value="3"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament12d" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10d.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s2.circle.xml"/>
+			<arg value="3"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament12e" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10e.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s2.circle.xml"/>
+			<arg value="3"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament12f" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers10f.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s2.circle.xml"/>
+			<arg value="3"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="tournament13" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers13.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s1.squares.xml"/>
+			<arg value="3"/>
+			<arg value="1000"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+	<target name="tournament14" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers14.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s2.circle.xml"/>
+			<arg value="3"/>
+			<arg value="500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+	<target name="tournament15" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers15.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s3.maze.mountains.xml"/>
+			<arg value="5"/>
+			<arg value="1500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+	<target name="tournament16" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers16.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s4.maze.water.xml"/>
+			<arg value="5"/>
+			<arg value="1500"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+	<target name="tournament17" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers17.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s5.columbia.xml"/>
+			<arg value="3"/>
+			<arg value="1000"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+	<target name="tournament18" depends="compile">
+		<java classname="explorandum.GameEngine" fork="yes">
+			<jvmarg value="-Xmx2G"/>
+			<arg value="explorers18.xml"/>
+			<arg value="tournament"/>
+			<arg value="boards/g0.s6.donut.xml"/>
+			<arg value="3"/>
+			<arg value="2000"/>
+			<arg value="50"/>
+			<classpath>
+				<pathelement path="${build}" />
+				<pathelement path = "${lib}/serializer.jar"/>
+				<pathelement path = "${lib}/xml-apis.jar"/>
+				<pathelement path = "${lib}/xercesImpl.jar"/>
+				<pathelement path = "${lib}/xercesSamples.jar"/>
+				<pathelement path = "${lib}/teneighty-heap_R17.jar"/>
+			</classpath>
+		</java>
+	</target>
+	
+
+<target name="clean">	<delete dir="${build}" />
+	<delete file="${archive_file}" />
+</target>
+
+<target name="archive" depends="clean">
+	<!-- Archive the Clean Code -->
+	<tar tarfile="${archive_file}" compression="gzip" basedir="." />
+</target>
+
+</project>
