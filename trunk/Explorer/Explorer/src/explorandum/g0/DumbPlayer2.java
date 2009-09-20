@@ -42,6 +42,7 @@ public class DumbPlayer2 implements Player
 		//Random output to understand move function
 		
 		System.out.println(" Current Location" + currentLocation.x + " , " + currentLocation.y );
+		System.out.println("time: " + time);
 		if(offsets.length==terrain.length)
 		{
 			System.out.println(" The offset length is " + offsets.length);
@@ -49,11 +50,11 @@ public class DumbPlayer2 implements Player
 		}
 		
 		
-		for (int j=0; j<=offsets.length; j++)
+		for (int j=0; j<offsets.length; j++)
 		{
 			System.out.print(" : ");
-			//System.out.print(offsets[j].x + " , " + offsets[j].y );
-			System.out.print(hasExplorer[j] + " , " + hasExplorer[j] );
+			System.out.print(offsets[j].x + " , " + offsets[j].y );
+			//System.out.print(hasExplorer[j] + " , " + hasExplorer[j] );
 		}
 		
 		// Build a list of valid locations
