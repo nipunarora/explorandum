@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import explorandum.Logger;
 import explorandum.Move;
 import explorandum.Player;
+import explorandum.f09.g1.strategies.CoastHugStrat;
+import explorandum.f09.g1.strategies.RandomStrat;
+import explorandum.f09.g1.strategies.Strategy;
 
 
 public class G1Player implements Player{
@@ -28,100 +31,87 @@ public class G1Player implements Player{
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus) throws Exception {
 		
-		//System.out.println("test");
+		//set the strategy
+		Strategy strat = new RandomStrat();
+				
+		//set the map explored
+		map.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
-		Random rand = new Random();
-		int action = ACTIONS[rand.nextInt(ACTIONS.length)];
-		System.out.println("action: " + ACTION_NAMES[action]);
-		//int action= coasthugger(currentLocation,offsets,hasExplorer,visibleExplorers,terrain,time,StepStatus);
-		
-		map.setMapExplored( currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
-		
-		if(map.hasVisited(currentLocation)==true)
-			System.out.println("Already Visited");
-
-		
-		return new Move(action);
+		//execute the move		
+		return new Move(strat.getMove(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus));
 	}
 
 	@Override
 	public String name() throws Exception {
-		
 		return "Team1" ;
 	}
 
 	@Override
 	public void register(int explorerID, int rounds, int explorers, int range,
 			Logger log, Random rand) {
-		
-		
 	}
 	
 	public int coasthugger(Point currentLocation, Point[] offsets,
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
-			Integer[] terrain, int time, Boolean StepStatus)
-	{
+			Integer[] terrain, int time, Boolean StepStatus) {
+		
 		Nearest temp= new Nearest();
-		temp=nearestwateroffset(currentLocation, offsets, terrain,distance);
-		if(temp.isWater==true)
-		{
+		temp = nearestwateroffset(currentLocation, offsets, terrain,distance);
+		if(temp.isWater==true) {
 			return temp.direction;
 		}
-		else 
-		{
+		else {
 			Random rand = new Random();
 			int action = ACTIONS[rand.nextInt(ACTIONS.length)];
 			return action;
-		}
-			
+		}		
 	}
 	
-	public Nearest nearestwateroffset(Point currentLocation, Point[] offsets, Integer[] terrain, int d)
-	{
+	public Nearest nearestwateroffset(Point currentLocation, Point[] offsets, Integer[] terrain, int d) {
 		Nearest temp= new Nearest();
 		Point location= new Point();
 		temp.isWater=false;
 		temp.offsetValue=100;
 		int x=0;
-		for(int i=0;i<offsets.length;i++)
-		{
+		
+		for(int i=0;i<offsets.length;i++) {
 			if(map.hasExplored(offsets[i]))
 				continue;
 			
 			location.x=offsets[i].x-currentLocation.x;
 			location.y=offsets[i].y-currentLocation.y;
 			
-			if(terrain[i]==1)
-			{
+			if(terrain[i]==1) {
 				temp.isWater=true;
 				//makes sure to select the nearest offset distance initially initialized offsetvalue to 100... offset value stores how much distance the current water cell is..
-				if(temp.offsetValue>offsetdist(location))
-				{
+				if(temp.offsetValue>offsetdist(location)) {
+					
 					temp.offsetValue=i;
 					x=(int)Math.ceil(location.x/d);
-					if(x==1)
-						switch((int)Math.ceil(location.y/d))
-						{
+					
+					if(x==1) {
+						switch((int)Math.ceil(location.y/d)) {
 							case 0: temp.direction=3;
 							case 1: temp.direction=2;
 							case -1: temp.direction=4;
 							default: break;
 						}
-					else if(x==0)
-						switch((int)Math.ceil(offsets[i].y/d))
-						{
+					}
+					else if(x==0) {
+						switch((int)Math.ceil(offsets[i].y/d)) {
 						case 1: temp.direction=1;
 						case -1: temp.direction=5;
 						default: break;
 						}
-					else if(x==-1)
-						switch((int)Math.ceil(offsets[i].y/d))
-						{
+					}
+					else if(x==-1) {
+						switch((int)Math.ceil(offsets[i].y/d)) {
 						case 0: temp.direction=7;
 						case 1: temp.direction=8;
 						case -1: temp.direction=6;
 						default: break;
 						}
+					}
 				}
 			}
 			
@@ -130,8 +120,7 @@ public class G1Player implements Player{
 	}
 	
 	//Calculates distance of the point p from 0,0 to be used for calculating distances of offsets..
-	public int offsetdist(Point p)
-	{		
+	public int offsetdist(Point p) {		
 		double tempval= (p.x)^2 + (p.y)^2;
 		tempval= Math.sqrt(tempval);
 		return (int)Math.floor(tempval);
@@ -196,11 +185,7 @@ public class G1Player implements Player{
 			}
 				
 		}
-		return NULL;
-		
-		
-		
-		
+		return NULL;	
 	}*/
 
 }
