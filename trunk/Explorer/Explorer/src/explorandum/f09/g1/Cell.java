@@ -22,6 +22,7 @@ public class Cell {
     
     public void setCell( int x, int y, int terrain, int stepStatus , int distance)
     {
+    	//System.out.println("Entered setCell");
     	this.x=x;
     	this.y=y;
     	this.terrain=terrain;
@@ -40,6 +41,11 @@ public class Cell {
     		return false;
     	else
     		return true;
+    }
+    
+    public void printCell()
+    {
+    	System.out.println(this.x + ", " + this.y + ", " + this.terrain + ", " + this.stepStatus + ", "+ this.distance);
     }
     
 }

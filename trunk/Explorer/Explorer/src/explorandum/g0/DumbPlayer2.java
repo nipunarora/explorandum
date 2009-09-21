@@ -41,6 +41,11 @@ public class DumbPlayer2 implements Player
 
 		//Random output to understand move function
 		
+		if(StepStatus==false)
+		{
+			System.out.println("no error");
+		}
+		/*
 		System.out.println(" Current Location" + currentLocation.x + " , " + currentLocation.y );
 		System.out.println("time: " + time);
 		if(offsets.length==terrain.length)
@@ -56,7 +61,7 @@ public class DumbPlayer2 implements Player
 			System.out.print(offsets[j].x + " , " + offsets[j].y );
 			//System.out.print(hasExplorer[j] + " , " + hasExplorer[j] );
 		}
-		
+		*/
 		// Build a list of valid locations
 		ArrayList<Point> valid = new ArrayList<Point>();
 		for (int i = 0; i < offsets.length; i++)

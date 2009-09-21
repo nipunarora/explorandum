@@ -7,12 +7,14 @@ import java.util.HashMap;
 public class Map {
 
 	private HashMap <Point, Cell> mapExplored;
+	private HashMap <Point, Cell> mapVisited;
 	// constructor to assign memory
 	
 	public Map(){
 		
 		//System.out.println("Created Map");
 	mapExplored = new HashMap <Point, Cell>();	
+	mapVisited = new HashMap <Point,Cell>();
 	}
 	
 	// add to the current map
@@ -28,11 +30,13 @@ public class Map {
 		//Create current cell and input values
 		for (int i=0; i<offsets.length; i++)
 		{
+			Point location= new Point();
+			location.x= offsets[i].x - currentLocation.x;
+			location.y= offsets[i].y - currentLocation.y;
 			//random checking
-			if(this.mapExplored.containsKey(offsets[i]))
-				continue;
 			
-			if(offsets[i].x==0&&offsets[i].y==0)
+			
+			if(location.x==0&&location.y==0)
 			{
 				if(stepStatus=true)
 					currentStepStatus = 2; 
@@ -43,18 +47,22 @@ public class Map {
 				currentCell.setCell(currentLocation.x, currentLocation.y, terrain[i], currentStepStatus,0);
 				
 				this.mapExplored.put(currentLocation, currentCell);
+				currentCell.printCell();
+				//this.mapVisited.put(currentLocation, currentCell);
 				continue;
 			}
 			
+			if(this.mapExplored.containsKey(offsets[i]))
+				continue;
+			
 				Cell offsetCell= new Cell();
-				Point location= new Point();
-				location.x= offsets[i].x - currentLocation.x;
-				location.y= offsets[i].y - currentLocation.y;
+				
 				
 				int distance= offsetdist(location);
 				
 				offsetCell.setCell(offsets[i].x, offsets[i].y, terrain[i], 3,distance);
 				this.mapExplored.put(offsets[i], offsetCell);
+				offsetCell.printCell();
 			
 		}
 		
@@ -77,6 +85,7 @@ public class Map {
 	}
 	// checks if the point has been visited
 	public boolean hasVisited(Point p){
+		
 		if(this.mapExplored.containsKey(p) && this.mapExplored.get(p).checkVisitedCell())
 			return true;
 		else

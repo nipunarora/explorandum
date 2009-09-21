@@ -30,17 +30,17 @@ public class G1Player implements Player{
 		
 		//System.out.println("test");
 		
-		//Random rand = new Random();
-		//int action = ACTIONS[rand.nextInt(ACTIONS.length)];
-		
-		int action= coasthugger(currentLocation,offsets,hasExplorer,visibleExplorers,terrain,time,StepStatus);
+		Random rand = new Random();
+		int action = ACTIONS[rand.nextInt(ACTIONS.length)];
+		System.out.println("action: " + ACTION_NAMES[action]);
+		//int action= coasthugger(currentLocation,offsets,hasExplorer,visibleExplorers,terrain,time,StepStatus);
 		
 		map.setMapExplored( currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
 		if(map.hasVisited(currentLocation)==true)
 			System.out.println("Already Visited");
 
-
+		
 		return new Move(action);
 	}
 
