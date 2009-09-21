@@ -38,7 +38,7 @@ public class Map {
 			
 			if(location.x==0&&location.y==0)
 			{
-				if(stepStatus=true)
+				if(stepStatus==true)
 					currentStepStatus = 2; 
 				else
 					currentStepStatus = 1;
