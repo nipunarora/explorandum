@@ -21,7 +21,6 @@ public class RandomStrat extends Strategy{
 		
 		ArrayList<Integer> validMoves = new ArrayList<Integer>();
 			
-		int j = 0;
 		for(int i = 0; i < offsets.length; i++) {
 			Point currPoint = offsets[i];
 			int distance = Utilities.euclidDistance(currentLocation, currPoint);
@@ -29,7 +28,6 @@ public class RandomStrat extends Strategy{
 			if(distance == 1) {
 				if(terrain[i] == 0) {
 					validMoves.add(i);
-					j++;
 				}
 			}
 		}
