@@ -6,86 +6,71 @@ import java.util.HashMap;
 
 public class Map {
 
-	private HashMap <Point, Cell> mapExplored;
-	private HashMap <Point, Cell> mapVisited;
+	private HashMap<Point, Cell> mapExplored;
+	private HashMap<Point, Cell> mapVisited;
 	// constructor to assign memory
-	
-	public Map(){
-		
-		//System.out.println("Created Map");
-	mapExplored = new HashMap <Point, Cell>();	
-	mapVisited = new HashMap <Point,Cell>();
+
+	public Map() {
+		mapExplored = new HashMap<Point, Cell>();	
+		mapVisited = new HashMap<Point,Cell>();
 	}
-	
+
 	// add to the current map
-	
+
 	public void setMapExplored( Point currentLocation, Point[] offsets, Boolean[] hasExplorer,
-            Integer[][] otherExplorers, Integer[] terrain, int time, Boolean stepStatus) {
-		
+			Integer[][] otherExplorers, Integer[] terrain, int time, Boolean stepStatus) {
+
 		System.out.println("Entered setMapExplored");
-		
-		//***Initially adding the current Cell- Naive Approch
+
+		//Initially adding the current Cell- Naive Approch
 		int currentTerrain = 0;
-		int currentStepStatus =0;
+		int currentStepStatus = 0;
+		Point currPoint;
+
 		//Create current cell and input values
-		for (int i=0; i<offsets.length; i++)
-		{
-			Point location= new Point();
-			location.x= offsets[i].x - currentLocation.x;
-			location.y= offsets[i].y - currentLocation.y;
-			//random checking
-			
-			
-			if(location.x==0&&location.y==0)
-			{
-				if(stepStatus==true)
+		for (int i=0; i<offsets.length; i++) {			
+			currPoint = offsets[i];
+
+			if((currPoint.x== currentLocation.x) && (currPoint.y == currentLocation.y)) {
+				if(stepStatus)
 					currentStepStatus = 2; 
 				else
 					currentStepStatus = 1;
-				
-				Cell currentCell = new Cell();
-				currentCell.setCell(currentLocation.x, currentLocation.y, terrain[i], currentStepStatus,0);
-				
+
+				Cell currentCell = new Cell(currentLocation.x, currentLocation.y, terrain[i], currentStepStatus,0);
+
 				this.mapExplored.put(currentLocation, currentCell);
 				currentCell.printCell();
-				//this.mapVisited.put(currentLocation, currentCell);
+				
 				continue;
 			}
+
+//			if(this.mapExplored.containsKey(offsets[i]))
+//				continue;				
+
+			int distance = euclidDistance(currentLocation, currPoint);
+			System.out.println("distance: " + distance);
 			
-			if(this.mapExplored.containsKey(offsets[i]))
-				continue;
-			
-				Cell offsetCell= new Cell();
-				
-				
-				int distance= offsetdist(location);
-				
-				offsetCell.setCell(offsets[i].x, offsets[i].y, terrain[i], 3,distance);
-				this.mapExplored.put(offsets[i], offsetCell);
-				offsetCell.printCell();
-			
+			Cell offsetCell = new Cell(offsets[i].x, offsets[i].y, terrain[i], 3, distance);
+			this.mapExplored.put(offsets[i], offsetCell);
+			offsetCell.printCell();
 		}
-		
 	}
-	
-	public int offsetdist(Point p)
-	{		
-		double tempval= (p.x)^2 + (p.y)^2;
-		tempval= Math.sqrt(tempval);
-		return (int)Math.floor(tempval);
+
+	public int euclidDistance(Point p1, Point p2) {		
+		double tempval= Math.pow((p1.x - p2.x), 2) + Math.pow((p1.y - p2.y), 2);
+		return (int)Math.floor(Math.sqrt(tempval));
 	}
-	
+
 	//checks if the point has been explored
-	public boolean hasExplored(Point p){
-		
+	public boolean hasExplored(Point p) {
 		if(this.mapExplored.containsKey(p))
 			return true;
 		else
 			return false;
 	}
 	// checks if the point has been visited
-	public boolean hasVisited(Point p){
-		
+	public boolean hasVisited(Point p) {
 		if(this.mapExplored.containsKey(p) && this.mapExplored.get(p).checkVisitedCell())
 			return true;
 		else
@@ -95,7 +80,5 @@ public class Map {
 	public HashMap <Point, Cell> getMapExplored() {
 		return mapExplored;
 	}
-	
-	
 }
 

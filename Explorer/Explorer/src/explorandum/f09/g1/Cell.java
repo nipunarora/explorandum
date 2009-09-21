@@ -20,9 +20,7 @@ public class Cell {
     private double rank;// tbd
     private int distance;//distance from which this cell was last observed
     
-    public void setCell( int x, int y, int terrain, int stepStatus , int distance)
-    {
-    	//System.out.println("Entered setCell");
+    public Cell(int x, int y, int terrain, int stepStatus , int distance) {
     	this.x=x;
     	this.y=y;
     	this.terrain=terrain;
@@ -30,22 +28,66 @@ public class Cell {
     	this.distance= distance;
     }
     
-    public void setRank(double rank)
-    {
+    public void setRank(double rank) {
     	this.rank= rank;
     }
     
     //checks if the cell has been visited before
-    public boolean checkVisitedCell(){
+    public boolean checkVisitedCell() {
     	if(this.stepStatus==3)
     		return false;
     	else
     		return true;
     }
     
-    public void printCell()
-    {
+    public void printCell() {
     	System.out.println(this.x + ", " + this.y + ", " + this.terrain + ", " + this.stepStatus + ", "+ this.distance);
     }
+
+    
+    //getters and setter
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(int terrain) {
+		this.terrain = terrain;
+	}
+
+	public int getStepStatus() {
+		return stepStatus;
+	}
+
+	public void setStepStatus(int stepStatus) {
+		this.stepStatus = stepStatus;
+	}
+
+	public int getDistance() {
+		return distance;
+	}
+
+	public void setDistance(int distance) {
+		this.distance = distance;
+	}
+
+	public double getRank() {
+		return rank;
+	}
     
 }
