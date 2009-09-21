@@ -15,6 +15,7 @@ public class Cell implements GameConstants
 	private Double ObservedDistance;
 	private Explorer ObservedBy;
 	private Boolean Stepped;
+	private int stepcount;
 	private ArrayList<CellListener> listeners;
 	
 
@@ -36,6 +37,7 @@ public class Cell implements GameConstants
 	{
 		CellBounds(new Point(x, y), dimensions);
 		Stepped = false;
+		stepcount = 0;
 		Observed = false;
 		ObservedDistance = Double.MAX_VALUE;
 		ObservedBy = new Explorer(0, "EMPTY", Color.WHITE);
@@ -47,6 +49,7 @@ public class Cell implements GameConstants
 	{
 		CellBounds(location, dimensions);
 		Stepped = false;
+		stepcount = 0;
 		Observed = false;
 		ObservedDistance = Double.MAX_VALUE;
 		ObservedBy = new Explorer(0, "EMPTY", Color.WHITE);
@@ -105,6 +108,21 @@ public class Cell implements GameConstants
 	public Boolean Observe(Explorer e, Cell from)
 	{
 		Double d = distanceToCell(from);
+		if(ObservedDistance == 0)
+		{
+			stepcount++;
+			System.out.println("Stepcount = " + stepcount);
+			if(stepcount < 2)
+			{
+				Stepped = false;
+			}
+			else
+			{
+				Stepped = true;
+			}
+		}
+		
+		
 		if(d < ObservedDistance)
 		{
 			Observed = true;
@@ -113,10 +131,7 @@ public class Cell implements GameConstants
 			
 			notifyListeners();
 			
-			if(ObservedDistance == 0)
-			{
-				Stepped = true;
-			}
+			
 			
 			return true;
 		}
