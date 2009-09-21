@@ -10,6 +10,8 @@ public class Map {
 	// constructor to assign memory
 	
 	public Map(){
+		
+		//System.out.println("Created Map");
 	mapExplored = new HashMap <Point, Cell>();	
 	}
 	
@@ -18,6 +20,8 @@ public class Map {
 	public void setMapExplored( Point currentLocation, Point[] offsets, Boolean[] hasExplorer,
             Integer[][] otherExplorers, Integer[] terrain, int time, Boolean stepStatus) {
 		
+		System.out.println("Entered setMapExplored");
+		
 		//***Initially adding the current Cell- Naive Approch
 		int currentTerrain = 0;
 		int currentStepStatus =0;
@@ -25,38 +29,44 @@ public class Map {
 		for (int i=0; i<offsets.length; i++)
 		{
 			//random checking
-			if(this.mapExplored.containsKey(currentLocation))
+			if(this.mapExplored.containsKey(offsets[i]))
 				continue;
 			
 			if(offsets[i].x==0&&offsets[i].y==0)
 			{
 				if(stepStatus=true)
 					currentStepStatus = 2; 
+				else
+					currentStepStatus = 1;
 				
 				Cell currentCell = new Cell();
 				currentCell.setCell(currentLocation.x, currentLocation.y, terrain[i], currentStepStatus,0);
 				
 				this.mapExplored.put(currentLocation, currentCell);
+				continue;
 			}
-			else
-			{
-				Point location=new Point();
-				//new location of the offset point relative to the starting position, since currentLocation is relative anyways
-				location.x=currentLocation.x+offsets[i].x;
-				location.y=currentLocation.y+offsets[i].y;
-				
-				if(this.mapExplored.containsKey(location))
-					continue;
+			
 				Cell offsetCell= new Cell();
-				int distance=0;
-				distance = (int)offsets[i].distance(new Point(0,0)); //Should this be lower bound?
-				offsetCell.setCell(location.x, location.y, terrain[i], 3,distance);
+				Point location= new Point();
+				location.x= offsets[i].x - currentLocation.x;
+				location.y= offsets[i].y - currentLocation.y;
 				
-				this.mapExplored.put(location, offsetCell);
-			}
+				int distance= offsetdist(location);
+				
+				offsetCell.setCell(offsets[i].x, offsets[i].y, terrain[i], 3,distance);
+				this.mapExplored.put(offsets[i], offsetCell);
+			
 		}
 		
 	}
+	
+	public int offsetdist(Point p)
+	{		
+		double tempval= (p.x)^2 + (p.y)^2;
+		tempval= Math.sqrt(tempval);
+		return (int)Math.floor(tempval);
+	}
+	
 	//checks if the point has been explored
 	public boolean hasExplored(Point p){
 		
