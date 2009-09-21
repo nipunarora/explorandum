@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
+import explorandum.f09.g1.Cell;
 import explorandum.f09.g1.Map;
 import explorandum.f09.g1.Utilities;
 import static explorandum.GameConstants.*;
@@ -20,22 +21,34 @@ public class RandomStrat extends Strategy{
 			Integer[] terrain, int time, Boolean StepStatus) {
 		
 		ArrayList<Integer> validMoves = new ArrayList<Integer>();
-			
+		ArrayList<Integer> validNewMoves = new ArrayList<Integer>();
+		
+		for(Cell c : this.memory.getMapExplored().values()) {
+			System.out.println(c);
+		}
+		
 		for(int i = 0; i < offsets.length; i++) {
 			Point currPoint = offsets[i];
 			int distance = Utilities.euclidDistance(currentLocation, currPoint);
-			//System.out.println("p1: " + currentLocation + ", p2: " + currPoint);
 			if(distance == 1) {
 				if(terrain[i] == 0) {
-					validMoves.add(i);
+					int dir = Utilities.getHeading(currentLocation, currPoint);
+					validMoves.add(dir);
+					if(!memory.hasVisited(currPoint)) {
+						validNewMoves.add(dir);
+					}
 				}
 			}
 		}
 		
+		int move;
+		Random rand = new Random();			
+		if(validNewMoves.size() == 0) {
+			move = validMoves.get(rand.nextInt(validMoves.size()));
+		} else {
+			move = validNewMoves.get(rand.nextInt(validNewMoves.size()));
+		}
 		
-		Random rand = new Random();
-		int move = validMoves.get(rand.nextInt(validMoves.size()));
-		System.out.println("j = " + j + " move: " + move);
 		return move;
 	}
 }

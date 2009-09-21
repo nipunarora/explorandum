@@ -34,11 +34,14 @@ public class G1Player implements Player{
 		//set the strategy
 		Strategy strat = new RandomStrat(this.map);
 				
+		//calculate the move
+		int move = strat.getMove(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
+
 		//set the map explored
-		//map.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
+		map.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
 		//execute the move		
-		return new Move(strat.getMove(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus));
+		return new Move(move);
 	}
 
 	@Override

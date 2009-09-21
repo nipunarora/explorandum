@@ -34,14 +34,14 @@ public class Cell {
     
     //checks if the cell has been visited before
     public boolean checkVisitedCell() {
-    	if(this.stepStatus==3)
+    	if(this.stepStatus == 3)
     		return false;
     	else
     		return true;
     }
     
-    public void printCell() {
-    	System.out.println(this.x + ", " + this.y + ", " + this.terrain + ", " + this.stepStatus + ", "+ this.distance);
+    public String toString() {
+    	return "x: " + this.x + ", y: " + this.y + ", status:" + this.stepStatus;
     }
 
     
