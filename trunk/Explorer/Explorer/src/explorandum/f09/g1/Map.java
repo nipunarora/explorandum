@@ -7,12 +7,10 @@ import java.util.HashMap;
 public class Map {
 
 	private HashMap<Point, Cell> mapExplored;
-	private HashMap<Point, Cell> mapVisited;
 	// constructor to assign memory
 
 	public Map() {
 		mapExplored = new HashMap<Point, Cell>();	
-		mapVisited = new HashMap<Point,Cell>();
 	}
 
 	// add to the current map
@@ -30,8 +28,15 @@ public class Map {
 		//Create current cell and input values
 		for (int i=0; i<offsets.length; i++) {			
 			currPoint = offsets[i];
-
-			if((currPoint.x== currentLocation.x) && (currPoint.y == currentLocation.y)) {
+			int currDistance = Utilities.euclidDistance(currentLocation, currPoint);
+			
+			if(this.hasExplored(currPoint)){
+				if(this.mapExplored.get(currPoint).getDistance() < currDistance) {
+					continue;
+				}
+			}
+			
+			if((currPoint.x == currentLocation.x) && (currPoint.y == currentLocation.y)) {
 				if(stepStatus)
 					currentStepStatus = 2; 
 				else
@@ -40,20 +45,16 @@ public class Map {
 				Cell currentCell = new Cell(currentLocation.x, currentLocation.y, terrain[i], currentStepStatus,0);
 
 				this.mapExplored.put(currentLocation, currentCell);
-				currentCell.printCell();
+				//currentCell.printCell();
 				
 				continue;
 			}
-
-//			if(this.mapExplored.containsKey(offsets[i]))
-//				continue;				
-
+			
 			int distance = euclidDistance(currentLocation, currPoint);
-			System.out.println("distance: " + distance);
 			
 			Cell offsetCell = new Cell(offsets[i].x, offsets[i].y, terrain[i], 3, distance);
 			this.mapExplored.put(offsets[i], offsetCell);
-			offsetCell.printCell();
+			//offsetCell.printCell();
 		}
 	}
 
