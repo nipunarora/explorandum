@@ -13,7 +13,7 @@ import explorandum.Player;
 public class G1Player implements Player{
 
 	
-	public Map map;
+	public Map map=new Map();
 	public int rounds;//I am assuming rounds to be given in some fashion but will figure out it later... using this as a temporary variable for calculation purposes...
 	public int distance;//distance visible to be changed later
 	
@@ -28,11 +28,18 @@ public class G1Player implements Player{
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus) throws Exception {
 		
+		//System.out.println("test");
+		
+		//Random rand = new Random();
+		//int action = ACTIONS[rand.nextInt(ACTIONS.length)];
+		
+		int action= coasthugger(currentLocation,offsets,hasExplorer,visibleExplorers,terrain,time,StepStatus);
+		
 		map.setMapExplored( currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
-		Random rand = new Random();
-		
-		int action = ACTIONS[rand.nextInt(ACTIONS.length)];
+		if(map.hasVisited(currentLocation)==true)
+			System.out.println("Already Visited");
+
 
 		return new Move(action);
 	}
@@ -55,7 +62,7 @@ public class G1Player implements Player{
 			Integer[] terrain, int time, Boolean StepStatus)
 	{
 		Nearest temp= new Nearest();
-		temp=nearestwateroffset(offsets, terrain,distance);
+		temp=nearestwateroffset(currentLocation, offsets, terrain,distance);
 		if(temp.isWater==true)
 		{
 			return temp.direction;
@@ -69,24 +76,31 @@ public class G1Player implements Player{
 			
 	}
 	
-	public Nearest nearestwateroffset(Point[] offsets, Integer[] terrain, int d)
+	public Nearest nearestwateroffset(Point currentLocation, Point[] offsets, Integer[] terrain, int d)
 	{
 		Nearest temp= new Nearest();
+		Point location= new Point();
 		temp.isWater=false;
 		temp.offsetValue=100;
 		int x=0;
 		for(int i=0;i<offsets.length;i++)
 		{
+			if(map.hasExplored(offsets[i]))
+				continue;
+			
+			location.x=offsets[i].x-currentLocation.x;
+			location.y=offsets[i].y-currentLocation.y;
+			
 			if(terrain[i]==1)
 			{
 				temp.isWater=true;
 				//makes sure to select the nearest offset distance initially initialized offsetvalue to 100... offset value stores how much distance the current water cell is..
-				if(temp.offsetValue>offsetdist(offsets[i]))
+				if(temp.offsetValue>offsetdist(location))
 				{
 					temp.offsetValue=i;
-					x=(int)Math.ceil(offsets[i].x/d);
+					x=(int)Math.ceil(location.x/d);
 					if(x==1)
-						switch((int)Math.ceil(offsets[i].y/d))
+						switch((int)Math.ceil(location.y/d))
 						{
 							case 0: temp.direction=3;
 							case 1: temp.direction=2;
