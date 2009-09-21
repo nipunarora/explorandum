@@ -32,10 +32,10 @@ public class G1Player implements Player{
 			Integer[] terrain, int time, Boolean StepStatus) throws Exception {
 		
 		//set the strategy
-		Strategy strat = new RandomStrat();
+		Strategy strat = new RandomStrat(this.map);
 				
 		//set the map explored
-		map.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
+		//map.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
 		//execute the move		
 		return new Move(strat.getMove(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus));

@@ -6,6 +6,8 @@ import explorandum.f09.g1.Map;
 
 public abstract class Strategy {
 	
+	protected Map memory;
+	
 	public abstract int getMove(Point currentLocation, Point[] offsets,
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus);
