@@ -2,6 +2,7 @@ package explorandum.f09.g1;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -16,9 +17,10 @@ import explorandum.f09.g1.strategies.Strategy;
 public class G1Player implements Player{
 
 	
-	public Map map=new Map();
+	public Map map = new Map();
+	
 	public int rounds;//I am assuming rounds to be given in some fashion but will figure out it later... using this as a temporary variable for calculation purposes...
-	public int distance;//distance visible to be changed later
+	public int range;//distance visible to be changed later
 	
 	@Override
 	public Color color() throws Exception {
@@ -31,6 +33,10 @@ public class G1Player implements Player{
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus) throws Exception {
 		
+		//create a map for your current view
+		Map currentView = new Map();
+		currentView.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
+		
 		//set the strategy
 		Strategy strat = new RandomStrat(this.map);
 				
@@ -39,6 +45,9 @@ public class G1Player implements Player{
 
 		//set the map explored
 		map.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
+
+		//kill the current view
+		currentView = null;
 		
 		//execute the move		
 		return new Move(move);
@@ -52,6 +61,7 @@ public class G1Player implements Player{
 	@Override
 	public void register(int explorerID, int rounds, int explorers, int range,
 			Logger log, Random rand) {
+		this.range = range;
 	}
 	
 	public int coasthugger(Point currentLocation, Point[] offsets,
@@ -59,7 +69,7 @@ public class G1Player implements Player{
 			Integer[] terrain, int time, Boolean StepStatus) {
 		
 		Nearest temp= new Nearest();
-		temp = nearestwateroffset(currentLocation, offsets, terrain,distance);
+		temp = nearestwateroffset(currentLocation, offsets, terrain,this.range);
 		if(temp.isWater==true) {
 			return temp.direction;
 		}
