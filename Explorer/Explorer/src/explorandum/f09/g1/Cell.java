@@ -89,5 +89,4 @@ public class Cell {
 	public double getRank() {
 		return rank;
 	}
-    
 }

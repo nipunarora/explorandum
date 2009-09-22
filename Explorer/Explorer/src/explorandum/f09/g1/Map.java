@@ -18,8 +18,6 @@ public class Map {
 	public void setMapExplored( Point currentLocation, Point[] offsets, Boolean[] hasExplorer,
 			Integer[][] otherExplorers, Integer[] terrain, int time, Boolean stepStatus) {
 
-		System.out.println("Entered setMapExplored");
-
 		//Initially adding the current Cell- Naive Approch
 		int currentTerrain = 0;
 		int currentStepStatus = 0;
@@ -45,7 +43,6 @@ public class Map {
 				Cell currentCell = new Cell(currentLocation.x, currentLocation.y, terrain[i], currentStepStatus,0);
 
 				this.mapExplored.put(currentLocation, currentCell);
-				//currentCell.printCell();
 				
 				continue;
 			}
@@ -54,7 +51,6 @@ public class Map {
 			
 			Cell offsetCell = new Cell(offsets[i].x, offsets[i].y, terrain[i], 3, distance);
 			this.mapExplored.put(offsets[i], offsetCell);
-			//offsetCell.printCell();
 		}
 	}
 
