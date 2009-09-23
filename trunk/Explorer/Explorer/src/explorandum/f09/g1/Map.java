@@ -4,6 +4,10 @@ import java.util.*;
 import java.awt.Point;
 import java.util.HashMap;
 
+import explorandum.GameConstants;
+import explorandum.f09.g1.Cell;
+import explorandum.f09.g1.Utilities;
+
 public class Map {
 
 	private HashMap<Point, Cell> mapExplored;
@@ -77,5 +81,63 @@ public class Map {
 	public HashMap <Point, Cell> getMapExplored() {
 		return mapExplored;
 	}
+	
+	 public Point getNeighborPoint(Point p, int direction) {
+		    return new Point(
+		      p.x + GameConstants._dx[direction],
+		      p.y + GameConstants._dy[direction]);
+		  }
+	 
+	 public double getCellOpenness(Point p, double range) {
+		    Cell c = getCell(p);
+		    
+		    if (c != null && c.getTerrain() != 0)
+		      return 0;
+
+		    if (c != null && (c.getDistance() == 0))
+		      return 0;
+
+		    double openness = 0;
+		    ArrayList<Point> neighbors = getNeighbors(p, range);
+		    for (Point neighbor_point : neighbors) {
+		      c = getCell(neighbor_point);
+		     //has already been viewed
+		      if (c != null) {
+		    	  //minimum distance that the cell is at
+		        double all_claimed_distance =c.getDistance();
+		        // 
+		        if (c.getTerrain() == 0 || c.getTerrain() == 2)
+		          openness += Math.max(0, all_claimed_distance - p.distance(neighbor_point));
+		        else {  // water
+		          openness += Math.max(0,
+		                      (all_claimed_distance - p.distance(neighbor_point)) *
+		                      30);
+		        }
+		      } else {
+		        openness += (range - p.distance(neighbor_point)) * 2;
+		      }
+		    }
+		    return openness;
+		  }
+	 
+	// Get the cell at p. The coordinates are relative to the start point.
+	  public Cell getCell(Point p) {
+		  if(mapExplored.containsKey(p))
+	    return mapExplored.get(p);
+		  else
+			  return null;
+	  }
+	  
+	  public ArrayList<Point> getNeighbors(Point p, double range) {
+		    ArrayList<Point> neighbors = new ArrayList<Point>();
+		    for (int x = (int) (p.x - range); x <= p.x + range; x++) {
+		      for (int y = (int) (p.y - range); y <= p.y + range; y++) {
+		        Point neighbor_point = new Point(x, y);
+		            neighbors.add(neighbor_point);
+		        }
+		      }
+		    
+		    return neighbors;
+		  }
 }
 

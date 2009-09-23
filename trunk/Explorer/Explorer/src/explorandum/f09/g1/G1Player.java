@@ -12,6 +12,7 @@ import explorandum.Move;
 import explorandum.Player;
 import explorandum.f09.g1.strategies.CoastHugStrat;
 import explorandum.f09.g1.strategies.OpenStrat;
+import explorandum.f09.g1.strategies.OpennesStrat;
 import explorandum.f09.g1.strategies.RandomStrat;
 import explorandum.f09.g1.strategies.Strategy;
 
@@ -50,7 +51,7 @@ public class G1Player implements Player{
 		currentView.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
 		//set the strategy
-		Strategy strat = new OpenStrat(this.map, currentView, this.range);
+		Strategy strat= new OpenStrat(this.map,currentView, this.range);
 				
 		//calculate the move
 		int move = strat.getMove(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);

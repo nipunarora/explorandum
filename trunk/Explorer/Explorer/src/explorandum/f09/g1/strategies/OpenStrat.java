@@ -75,6 +75,12 @@ public class OpenStrat extends Strategy {
 					
 					//(2*this.range- Utilities.euclidDistance(currPoint, currentLocation))*
 					
+					int weight;
+					if (this.memory.hasExplored(currPoint))
+						weight=1;
+					else
+						weight =3;
+					
 					scores[i] +=  distanceMult* prevSeenMult* (terrainScore + statusScore);
 					System.out.println(currPoint.toString()+ "terrainScore:   " +terrainScore + "statusScore  " + statusScore);
 				}
@@ -85,7 +91,7 @@ public class OpenStrat extends Strategy {
 				bestScore = scores[i];
 			}
 			
-			System.out.println(offsets[i] + " - score: " + scores[i] + " terrain: " + terrain[i]);
+			System.out.println(offsets[i] + " - ***************************score: " + scores[i] + " terrain: " + terrain[i]);
 		}
 		
 //		for(int k = 0; k < scores.length; k++) {
@@ -109,7 +115,7 @@ public class OpenStrat extends Strategy {
 
 	public double getStatusScore(Cell c) {
 		if(c == null) {
-			return 50;
+			return 70;
 		} else {
 			double StatusScore=(c.getDistance()/this.range) * 25;
 			//System.out.println("Current Point:" + c.toString() +"   Status Score:" +StatusScore);
