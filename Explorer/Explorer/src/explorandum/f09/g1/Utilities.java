@@ -59,9 +59,11 @@ public class Utilities {
 		
 		if(memory.getMapExplored().containsKey(p)) {
 			return memory.getMapExplored().get(p);
-		} else if(view.getMapExplored().containsKey(p)) {
+		} 
+		else if(view.getMapExplored().containsKey(p)) {
 			return view.getMapExplored().get(p);
-		} else {
+		} 
+		else {
 			return null;
 		}
 		

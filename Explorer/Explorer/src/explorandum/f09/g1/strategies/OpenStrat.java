@@ -73,7 +73,9 @@ public class OpenStrat extends Strategy {
 						prevSeenMult = .7;
 					}
 					
-					scores[i] += (terrainScore + statusScore);
+					//(2*this.range- Utilities.euclidDistance(currPoint, currentLocation))*
+					
+					scores[i] +=  distanceMult* prevSeenMult* (terrainScore + statusScore);
 					System.out.println(currPoint.toString()+ "terrainScore:   " +terrainScore + "statusScore  " + statusScore);
 				}
 			}	
@@ -99,7 +101,7 @@ public class OpenStrat extends Strategy {
 		} else if(c.getTerrain() == 0) {
 			return 20;
 		} else if(c.getTerrain() == 1) {
-			return 60;
+			return 70;
 		} else {
 			return 5;
 		}
