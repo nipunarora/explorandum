@@ -35,12 +35,14 @@ public class G1Player implements Player{
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus) throws Exception {
 
+		currentLocation.y= -currentLocation.y;
+		
 		for(Point p : offsets) {
 			p.y = -p.y;
 		}
 		
-		System.out.println(Arrays.toString(offsets));
-		System.out.println(Arrays.toString(terrain));
+		//System.out.println(Arrays.toString(offsets));
+		//System.out.println(Arrays.toString(terrain));
 
 		
 		//create a map for your current view
@@ -72,6 +74,7 @@ public class G1Player implements Player{
 	public void register(int explorerID, int rounds, int explorers, int range,
 			Logger log, Random rand) {
 		this.range = range;
+		//System.out.println("range: "+ this.range);
 	}
 	
 	public int coasthugger(Point currentLocation, Point[] offsets,
