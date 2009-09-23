@@ -99,7 +99,7 @@ public class OpenStrat extends Strategy {
 		} else if(c.getTerrain() == 0) {
 			return 20;
 		} else if(c.getTerrain() == 1) {
-			return 300;
+			return 60;
 		} else {
 			return 5;
 		}
@@ -107,9 +107,9 @@ public class OpenStrat extends Strategy {
 
 	public double getStatusScore(Cell c) {
 		if(c == null) {
-			return 40;
+			return 50;
 		} else {
-			double StatusScore=(c.getDistance()/this.range) * 20;
+			double StatusScore=(c.getDistance()/this.range) * 25;
 			//System.out.println("Current Point:" + c.toString() +"   Status Score:" +StatusScore);
 			return (StatusScore);
 		}
