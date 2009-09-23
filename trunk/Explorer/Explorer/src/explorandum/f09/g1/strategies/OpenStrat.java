@@ -60,7 +60,7 @@ public class OpenStrat extends Strategy {
 					if(currCell==null){
 						System.out.print("null");
 					}
-					System.out.println(currPoint.toString());
+					
 					
 					terrainScore = getTerrainScore(currCell);
 					statusScore = getStatusScore(currCell);
@@ -74,6 +74,7 @@ public class OpenStrat extends Strategy {
 					}
 					
 					scores[i] += (terrainScore + statusScore);
+					System.out.println(currPoint.toString()+ "terrainScore:   " +terrainScore + "statusScore  " + statusScore);
 				}
 			}	
 			
@@ -108,7 +109,9 @@ public class OpenStrat extends Strategy {
 		if(c == null) {
 			return 40;
 		} else {
-			return ((c.getDistance()/this.range) * 20);
+			double StatusScore=(c.getDistance()/this.range) * 20;
+			//System.out.println("Current Point:" + c.toString() +"   Status Score:" +StatusScore);
+			return (StatusScore);
 		}
 	}
 }

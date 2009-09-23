@@ -28,7 +28,7 @@ public class Utilities {
             else if(dy < 0.0) angle = Math.atan(dy/dx) + (2*Math.PI);
             else              angle = Math.atan(dy/dx);
         }
-        return 360.0 - ((angle * 180) / Math.PI);
+        return ((angle * 180) / Math.PI);
     }
 	
 	public static int getHeading(Point a, Point b) {
