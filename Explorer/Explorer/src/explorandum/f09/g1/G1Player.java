@@ -2,6 +2,7 @@ package explorandum.f09.g1;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import explorandum.Logger;
 import explorandum.Move;
 import explorandum.Player;
 import explorandum.f09.g1.strategies.CoastHugStrat;
+import explorandum.f09.g1.strategies.OpenStrat;
 import explorandum.f09.g1.strategies.RandomStrat;
 import explorandum.f09.g1.strategies.Strategy;
 
@@ -32,13 +34,21 @@ public class G1Player implements Player{
 	public Move move(Point currentLocation, Point[] offsets,
 			Boolean[] hasExplorer, Integer[][] visibleExplorers,
 			Integer[] terrain, int time, Boolean StepStatus) throws Exception {
+
+		for(Point p : offsets) {
+			p.y = -p.y;
+		}
+		
+		System.out.println(Arrays.toString(offsets));
+		System.out.println(Arrays.toString(terrain));
+
 		
 		//create a map for your current view
 		Map currentView = new Map();
 		currentView.setMapExplored(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
 		
 		//set the strategy
-		Strategy strat = new RandomStrat(this.map);
+		Strategy strat = new OpenStrat(this.map, currentView, this.range);
 				
 		//calculate the move
 		int move = strat.getMove(currentLocation, offsets, hasExplorer, visibleExplorers, terrain, time, StepStatus);
