@@ -39,17 +39,18 @@ public class DumbPlayer2 implements Player
 	public Move move(Point currentLocation, Point[] offsets, Boolean[] hasExplorer, Integer[][] otherExplorers, Integer[] terrain, int time,Boolean StepStatus) throws Exception
 	{
 		
-		for(Point p : offsets) {
+		/*for(Point p : offsets) {
 			p.y = -p.y;
-		}
+		}*/
 
 		//Random output to understand move function
-		
+		/*
 		if(StepStatus==false)
 		{
 			System.out.println("no error");
-		}
-		//System.out.println(" Current Location" + currentLocation.x + " , " + currentLocation.y );
+		}*/
+		
+		System.out.println(" Current Location" + currentLocation.x + " , " + currentLocation.y );
 
 		/*
 		
@@ -64,8 +65,8 @@ public class DumbPlayer2 implements Player
 		for (int j=0; j<offsets.length; j++)
 		{
 			//System.out.print(" : ");
-			System.out.print(offsets[j].x + " , " + offsets[j].y + " - ");
-			System.out.println(terrain[j]);
+			//System.out.print(offsets[j].x + " , " + offsets[j].y + " - ");
+			//System.out.println(terrain[j]);
 
 			//System.out.print(hasExplorer[j] + " , " + hasExplorer[j] );
 		}

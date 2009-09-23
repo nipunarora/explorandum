@@ -18,7 +18,7 @@ public class Map {
 	public void setMapExplored( Point currentLocation, Point[] offsets, Boolean[] hasExplorer,
 			Integer[][] otherExplorers, Integer[] terrain, int time, Boolean stepStatus) {
 
-		//Initially adding the current Cell- Naive Approch
+		//Initially adding the current Cell- Naive Approach
 		int currentTerrain = 0;
 		int currentStepStatus = 0;
 		Point currPoint;
