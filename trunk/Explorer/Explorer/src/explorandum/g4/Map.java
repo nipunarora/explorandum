@@ -78,12 +78,13 @@ public abstract class Map {
     ArrayList<Point> neighbors = getNeighbors(p, range);
     for (Point neighbor_point : neighbors) {
       c = getCell(neighbor_point);
+     //has already been viewed
       if (c != null) {
-        double all_claimed_distance =
-            Math.min(c.claimed_distance, c.claimed_distance_other);
+    	  //minimum distance that the cell is at
+        double all_claimed_distance =Math.min(c.claimed_distance, c.claimed_distance_other);
+        // 
         if (c.terrain == 0 || c.terrain == 2)
-          openness += Math.max(0,
-                      all_claimed_distance - p.distance(neighbor_point));
+          openness += Math.max(0, all_claimed_distance - p.distance(neighbor_point));
         else {  // water
           openness += Math.max(0,
                       (all_claimed_distance - p.distance(neighbor_point)) *
