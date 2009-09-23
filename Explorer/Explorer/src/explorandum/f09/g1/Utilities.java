@@ -34,28 +34,24 @@ public class Utilities {
 	public static int getHeading(Point a, Point b) {
 		int angle = (int)Math.floor(getAngle(a, b));
 		
-		switch(angle) {
-			case 0: 
-				return 3;
-			case 45:
-				return 2;
-			case 90:
-				return 1;
-			case 135:
-				return 8;
-			case 180:
-				return 7;
-			case 225:
-				return 6;
-			case 270:
-				return 5;
-			case 315:
-				return 4;
-			case 360:
-				return 3;
-			default:
-				System.out.println("angle: " + angle + ", entering default");
-				return 0;
+		if(angle >= 0 && angle < 45) {
+			return 3;
+		} else if(angle >= 45 && angle < 90) {
+			return 2;
+		} else if(angle >= 90 && angle < 135) {
+			return 1;
+		} else if(angle >= 135 && angle < 180) {
+			return 8;
+		} else if(angle >= 180 && angle < 225) {
+			return 7;
+		} else if(angle >= 225 && angle < 270) {
+			return 6;
+		} else if(angle >= 270 && angle < 315) {
+			return 5;
+		} else if(angle >= 315 && angle < 360) {
+			return 4;
+		} else {
+			return 3;
 		}
 	}
 	
