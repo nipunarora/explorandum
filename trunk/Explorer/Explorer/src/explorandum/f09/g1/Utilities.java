@@ -58,4 +58,16 @@ public class Utilities {
 				return 0;
 		}
 	}
+	
+	public static Cell checkMemory(Map memory, Map view, Point p) {
+		
+		if(memory.getMapExplored().containsKey(p)) {
+			return view.getMapExplored().get(p);
+		} else if(view.getMapExplored().containsKey(p)) {
+			return memory.getMapExplored().get(p);
+		} else {
+			return null;
+		}
+		
+	}
 }

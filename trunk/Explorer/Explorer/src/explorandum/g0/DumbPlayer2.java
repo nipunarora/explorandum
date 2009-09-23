@@ -38,6 +38,10 @@ public class DumbPlayer2 implements Player
 	//(if the adjacent cell is blocked this player doesn't re-think)
 	public Move move(Point currentLocation, Point[] offsets, Boolean[] hasExplorer, Integer[][] otherExplorers, Integer[] terrain, int time,Boolean StepStatus) throws Exception
 	{
+		
+		for(Point p : offsets) {
+			p.y = -p.y;
+		}
 
 		//Random output to understand move function
 		
@@ -45,8 +49,10 @@ public class DumbPlayer2 implements Player
 		{
 			System.out.println("no error");
 		}
+		//System.out.println(" Current Location" + currentLocation.x + " , " + currentLocation.y );
+
 		/*
-		System.out.println(" Current Location" + currentLocation.x + " , " + currentLocation.y );
+		
 		System.out.println("time: " + time);
 		if(offsets.length==terrain.length)
 		{
@@ -54,14 +60,16 @@ public class DumbPlayer2 implements Player
 			System.out.print("Offsets Length verified");
 		}
 		
-		
+				*/
 		for (int j=0; j<offsets.length; j++)
 		{
-			System.out.print(" : ");
-			System.out.print(offsets[j].x + " , " + offsets[j].y );
+			//System.out.print(" : ");
+			System.out.print(offsets[j].x + " , " + offsets[j].y + " - ");
+			System.out.println(terrain[j]);
+
 			//System.out.print(hasExplorer[j] + " , " + hasExplorer[j] );
 		}
-		*/
+
 		// Build a list of valid locations
 		ArrayList<Point> valid = new ArrayList<Point>();
 		for (int i = 0; i < offsets.length; i++)
