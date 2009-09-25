@@ -111,7 +111,7 @@ public class Cell implements GameConstants
 		if(ObservedDistance == 0)
 		{
 			stepcount++;
-			System.out.println("Stepcount = " + stepcount);
+			//System.out.println("Stepcount = " + stepcount);
 			if(stepcount < 2)
 			{
 				Stepped = false;
